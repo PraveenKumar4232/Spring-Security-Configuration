@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.User;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -35,8 +37,18 @@ public class UserController {
                      // status
     }
 
+    @GetMapping("/session-id")
+    public String getSessionId(HttpSession session) {
+        return session.getId();
+    }
+
     @GetMapping("/users")
     public ArrayList<User> getAllUsers() {
         return users;
+    }
+
+    @GetMapping("/home")
+    public String greetings() {
+        return "Welcome from Spring Boot!";
     }
 }
